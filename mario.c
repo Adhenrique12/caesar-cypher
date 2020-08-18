@@ -16,6 +16,7 @@ int main(void)
 int get_positive_int(void)
 {
     int n;
+    //get valor positive and less than 8
     do
     {
         n = get_int("Height: ");
@@ -30,22 +31,25 @@ void pyramide(int height)
     int espaces = height - 1;
     int hashes = 1;
 
-    for(int n = 0; n < height; n++)
+    //for columm
+    for (int n = 0; n < height; n++)
     {
-        for(int i = 0; i < espaces; i++)
+        //add space for line
+        for (int i = 0; i < espaces; i++)
         {
             printf(" ");
 
         }
-        for(int i = 0; i < hashes; i++)
+        for (int i = 0; i < hashes; i++)
         {
             printf("#");
         }
         printf("  ");
-        for(int i = 0; i < hashes; i++)
+        for (int i = 0; i < hashes; i++)
         {
             printf("#");
         }
+        //New valor for line of hashes and espacesS
         hashes++;
         espaces--;
         printf("\n");
