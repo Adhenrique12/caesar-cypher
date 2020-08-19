@@ -24,7 +24,7 @@ int main(void)
 long checksum(long number)
 {
 
-    long power = 2,power1 = 1 , n = number, count = 0, multi,sum=0, sum1 =0, total;
+    long power = 2,power1 = 1 , n = number, count = 0, multi,sum=0, sum1 =0;
 
 
     while (n != 0)
@@ -38,11 +38,6 @@ long checksum(long number)
         long current = number % (long) pow(10, power);
         multi = (current /= (long) pow(10, power-1)) * 2;
 
-        long current1 = number % (long) pow(10, power1);
-        current1 /= (long) pow(10, power1-1);
-
-
-
         if (multi/10 == 1)
         {
             sum += (multi/10) + (multi%10);
@@ -52,21 +47,30 @@ long checksum(long number)
             sum += multi;
         }
 
-        sum1 += current1;
-
-        //printf("sum1 = %ld", sum1);
-        //printf("sum = %ld", sum);
-        total = sum + sum1;
-
         power+=2;
-        power1+=2;
 
         if (power > count)
         {
             break;
         }
     }
-    return total;
+
+    while(true)
+    {
+        long current1 = number % (long) pow(10, power1);
+        current1 /= (long) pow(10, power1-1);
+
+        sum1 += current1;
+
+        power1+=2;
+
+        if (power1 > count)
+        {
+            break;
+        }
+    }
+
+    return sum1 + sum;
 }
 
 void card(long number)
