@@ -11,13 +11,14 @@ void grade(string text);
 int main(void)
 {
     string text = get_string("Text: ");
-    grade(text);
+    grade(text); //Give the grade of the text
 }
 
 int count_letters(string text)
 {
     int letters = 0;
 
+    //Count the letters of the text
     for (int i = 0, n = strlen(text); i <= n; i++)
     {
         if ((text[i] >= 'a' && text[i] <= 'z') || (text[i] >= 'A' && text[i] <= 'Z'))
@@ -32,6 +33,7 @@ int count_words(string text)
 {
     int words = 0;
 
+    //Count the words of the text
     for (int i = 0, n = strlen(text); i <= n; i++)
     {
         if (text[i] == ' ' || text[i] == '\0')
@@ -46,6 +48,7 @@ int count_sentences(string text)
 {
     int sentences = 0;
 
+    //Count the sentences of the text
     for (int i = 0, n = strlen(text); i <= n; i++)
     {
         if (text[i] == '.' || text[i] == '!' || text[i] == '?')
@@ -58,13 +61,13 @@ int count_sentences(string text)
 
 void grade(string text)
 {
-
+    // Formula => index = 0.0588 * L - 0.296 * S - 15.8
     float l = ((float)count_letters(text) / (float)count_words(text)) * 100.0;
     float s = ((float)count_sentences(text) / (float)count_words(text)) * 100.0;
-    float index = 0.0588 * l - 0.296 * s - 15.8;
-    int grade = round(index);
+    float index = 0.0588 * l - 0.296 * s - 15.8; //Aply the formula The Coleman-Liau
+    int grade = round(index); //Round the index up
 
-
+    //Chose the grade
     if (index < 1)
     {
         printf("Before Grade 1\n");
@@ -77,5 +80,4 @@ void grade(string text)
     {
         printf("Grade %d\n", grade);
     }
-
 }
