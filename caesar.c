@@ -40,7 +40,7 @@ string encipher(string plaintext, int key)
     char c, cha, soma, mod, final;
 
     //Using ASCII code
-    for(int i = 0, n = strlen(plaintext); i <= n; i++)
+    for (int i = 0, n = strlen(plaintext); i <= n; i++)
     {
         //Verify if is Alphabet
         if (isalpha(plaintext[i]))
@@ -68,7 +68,8 @@ string encipher(string plaintext, int key)
             }
         }
         else
-        {   //If the char is not alphabet place the same char
+        {
+            //If the char is not alphabet place the same char
             enciphertext[i] = plaintext[i];
         }
     }
