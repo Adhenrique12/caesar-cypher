@@ -30,6 +30,7 @@ int main(int argc, string argv[])
     {
         //Help to the user
         printf("Usage: ./caesar key\n");
+        exit(1);
     }
 }
 
