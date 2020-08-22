@@ -100,7 +100,7 @@ int main(int argc, string argv[])
 
 int get_index(string name)
 {
-    for (int i= 0; i < candidate_count; i++)
+    for (int i = 0; i < candidate_count; i++)
     {
         if (strcmp(candidates[i], name) == 0)
         {
@@ -154,10 +154,11 @@ void add_pairs(void)
     }
 }
 
-int compare(const void * element1, const void * element2)
+//Compare
+int compare(const void *element1, const void *element2)
 {
-    pair f = *((pair*) element1);
-    pair s = *((pair*) element2);
+    pair f = *((pair *) element1);
+    pair s = *((pair *) element2);
     int frist = preferences[f.winner][f.loser] - preferences[f.loser][f.winner];
     int second = preferences[s.winner][s.loser] - preferences[s.loser][s.winner];
     return second - frist;
@@ -169,6 +170,7 @@ void sort_pairs(void)
     qsort(pairs, pair_count, sizeof(pair), compare);
 }
 
+//If as a cycle
 bool has_cycle_helper(int index, bool visited[])
 {
     if (visited[index])
@@ -178,17 +180,15 @@ bool has_cycle_helper(int index, bool visited[])
     visited[index] = true;
     for (int i = 0; i < candidate_count; i++)
     {
-        if (locked[index][i])
+        if (locked[index][i] && has_cycle_helper(i, visited))
         {
-           if (has_cycle_helper(i, visited))
-           {
-               return true;
-           }
+            return true;
         }
     }
     return false;
 }
 
+//If has cycle response
 bool has_cycle(int starting_index)
 {
     bool visited[candidate_count];
@@ -212,9 +212,10 @@ void lock_pairs(void)
     }
 }
 
+//verify the source
 bool is_source(int index)
 {
-    for ( int i = 0; i < candidate_count; i++)
+    for (int i = 0; i < candidate_count; i++)
     {
         if (locked[i][index])
         {
@@ -224,6 +225,7 @@ bool is_source(int index)
     return true;
 }
 
+//Find the source
 int source()
 {
     for (int i = 0; i < candidate_count; i++)
@@ -234,7 +236,6 @@ int source()
         }
     }
     return -1;
-
 }
 
 // Print the winner of the election
